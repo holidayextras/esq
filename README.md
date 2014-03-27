@@ -14,6 +14,29 @@ query = esq.bool('filtered', 'query', 'bool', 'must', esq.match('foo', 'bar'));
 query = esq.bool('filtered', 'query', 'bool', 'must', esq.match('date', '2014-02-01'));
 query = esq.bool('filtered', 'query', 'bool', 'should', esq.range('time', '12:00', '13:00'));
 query = esq.bool('filtered', 'query', 'bool', 'minimum_should_match', 1);
+
+// query == {
+//  "filtered": {
+//    "query": {
+//      "bool": {
+//        "must": {
+//          "match": {
+//            "date": "2014-02-01"
+//          }
+//        },
+//        "should": {
+//          "range": {
+//            "time": {
+//              "gte": "12:00",
+//              "lte": "13:00"
+//            }
+//          }
+//        },
+//        "minimum_should_match": 1
+//      }
+//    }
+//  }
+//}
 ```
 ---
 ```javascript
@@ -26,6 +49,25 @@ esq.query('query', esq.range('x', '1', '5'));
 esq.query('query', esq.wildcard('test', 'what'));
 
 var query = esq.getQuery();
+
+// query == {
+//  "query": {
+//    "match": {
+//      "foo": "bar"
+//    },
+//    "range": {
+//      "x": {
+//        "gte": "1",
+//        "lte": "5"
+//      }
+//    },
+//    "wildcard": {
+//      "test": {
+//        "value": "what"
+//      }
+//    }
+//  }
+//}
 ```
 
 ## Download
