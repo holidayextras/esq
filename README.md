@@ -5,7 +5,7 @@ ESQ is a helper module for elasticsearch. It aims to provide an easy way of crea
 ## Quick Examples
 
 ```javascript
-var ESQ = require('../index');
+var ESQ = require('../lib/esq');
 
 var esq = new ESQ();
 var query = null;
@@ -40,7 +40,7 @@ query = esq.bool('filtered', 'query', 'bool', 'minimum_should_match', 1);
 ```
 ---
 ```javascript
-var ESQ = require('../index');
+var ESQ = require('../lib/esq');
 
 var esq = new ESQ();
 

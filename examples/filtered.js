@@ -1,4 +1,4 @@
-var ESQ = require('../index');
+var ESQ = require('../lib/esq');
 
 var esq = new ESQ();
 var query = null;
