@@ -48,22 +48,28 @@ describe('Testing ESQ', function() {
 
     it('with an operator and value', function() {
       var result = esq.bool('must', { foo: 'bar' });
-      assert.deepEqual(result, { });
+      assert.deepEqual(result, { must: [ { foo: 'bar' } ] });
     });
 
     it('with a must query', function() {
       var result = esq.bool('bool', 'must', { foo: 'bar' });
-      assert.deepEqual(result, { bool: { must: { foo: 'bar' } } });
+      assert.deepEqual(result, { bool: { must: [ { foo: 'bar' } ] } });
+    });
+
+    it('with multiple must queries', function() {
+      esq.bool('bool', 'must', { foo: 'bar' });
+      var result = esq.bool('bool', 'must', { bar: 'foo' });
+      assert.deepEqual(result, { bool: { must: [ { foo: 'bar' }, { bar: 'foo' } ] } });
     });
 
     it('with a must_not query', function() {
       var result = esq.bool('bool', 'must_not', { foo: 'bar' });
-      assert.deepEqual(result, { bool: { must_not: { foo: 'bar' } } });
+      assert.deepEqual(result, { bool: { must_not: [ { foo: 'bar' } ] } });
     });
 
     it('with a should query', function() {
       var result = esq.bool('bool', 'should', { foo: 'bar' });
-      assert.deepEqual(result, { bool: { should: { foo: 'bar' } } });
+      assert.deepEqual(result, { bool: { should: [ { foo: 'bar' } ] } });
     });
 
     it('with no operator', function() {
@@ -73,7 +79,7 @@ describe('Testing ESQ', function() {
 
     it('with an incorrect value type', function() {
       var result = esq.bool('bool', 'minimum_should_match', true);
-      assert.deepEqual(result, { bool: { minimum_should_match: { true: { } } } });
+      assert.deepEqual(result, { });
     });
   });
 
