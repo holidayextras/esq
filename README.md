@@ -107,8 +107,8 @@ __Generates__
 ```
 
 ---
-### esq.bool(str, ..., str, must|must_not|should|minimum_should_match, value);
-Same as above, however the second to last parameter must be one of the following: must, must_not, should or minimum_should_match. This will ensure that the final value is assigned correctly or pushed into an array.
+### esq.bool(str, ..., str, operator, value);
+Same as above, however the second to last parameter must be one of the following operators: must, must_not, should or minimum_should_match. This will ensure that the final value is assigned correctly or pushed into an array.
 
 __Example__
 ```javascript
