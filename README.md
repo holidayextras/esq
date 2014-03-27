@@ -15,7 +15,7 @@ query = esq.bool('filtered', 'query', 'bool', 'must', esq.match('date', '2014-02
 query = esq.bool('filtered', 'query', 'bool', 'should', esq.range('time', '12:00', '13:00'));
 query = esq.bool('filtered', 'query', 'bool', 'minimum_should_match', 1);
 ```
-
+---
 ```javascript
 var ESQ = require('../index');
 
@@ -43,7 +43,6 @@ Coming soon!
 
 ## Queries
 
----
 ### esq.query(str, ..., str, value);
 You can pass the function as many strings as you want and you'll receive a nested object with the arguments as keys. The final value (query component) will be assigned to the final object.
 
@@ -91,10 +90,8 @@ __Generates__
 }
 ```
 
----
 ## Query Components
 
----
 ### esq.match(key, value);
 Build a match query component using the key and value provided.
 
