@@ -1,9 +1,9 @@
 # ESQ
----
+
 ESQ is a helper module for elasticsearch. It aims to provide an easy way of creating elasticsearch queries.
 
 ## Quick Examples
----
+
 ```javascript
 var ESQ = require('../index');
 
@@ -29,20 +29,21 @@ var query = esq.getQuery();
 ```
 
 ## Download
----
+
 ```
 npm install esq
 ```
 
 ## In the Browser
----
+
 Coming soon!
 
 ## Documentation
----
+
 
 ## Queries
 
+---
 ### esq.query(str, ..., str, value);
 You can pass the function as many strings as you want and you'll receive a nested object with the arguments as keys. The final value (query component) will be assigned to the final object.
 
@@ -64,6 +65,7 @@ __Generates__
 }
 ```
 
+---
 ### esq.bool(str, ..., str, must|must_not|should|minimum_should_match, value);
 Same as above, however the second to last parameter must be one of the following: must, must_not, should or minimum_should_match. This will ensure that the final value is assigned correctly or pushed into an array.
 
@@ -89,8 +91,10 @@ __Generates__
 }
 ```
 
+---
 ## Query Components
 
+---
 ### esq.match(key, value);
 Build a match query component using the key and value provided.
 
@@ -108,6 +112,7 @@ __Generates__
 }
 ```
 
+---
 ### esq.term(key, value);
 Build a term query component using the key and value provided.
 
@@ -125,6 +130,7 @@ __Generates__
 }
 ```
 
+---
 ### esq.range(key, gte, lte);
 Build a range query using the key, grater than equal and/or less than equal provided.
 
@@ -145,6 +151,7 @@ __Generates__
 }
 ```
 
+---
 ### esq.wildcard(key, value);
 Build a wildcard query component using the key and value provided.
 
