@@ -1,10 +1,9 @@
 {
   "name": "esq",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Easily build elasticsearch queries",
   "keywords": [
     "elasticsearch",
-    "es",
     "query",
     "querying"
   ],
@@ -15,7 +14,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "mocha test/tests.js"
+    "test": "mocha"
   },
   "author": "Rahul Patel <rahul.patel@holidayextras.com>",
   "license": "GPL"
