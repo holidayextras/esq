@@ -63,23 +63,23 @@ esq.query('query', 'wildcard', 'test', 'value', 'what*');
 var query = esq.getQuery();
 
 // query == {
-//  "query": {
-//    "match": {
-//      "foo": "bar"
-//    },
-//    "range": {
-//      "x": {
-//        "gte": "1",
-//        "lte": "5"
-//      }
-//    },
-//    "wildcard": {
-//      "test": {
-//        "value": "what*"
-//      }
-//    }
-//  }
-//}
+//   "query": {
+//     "match": {
+//       "foo": "bar"
+//     },
+//     "range": {
+//       "x": {
+//         "gte": "1",
+//         "lte": "5"
+//       }
+//     },
+//     "wildcard": {
+//       "test": {
+//         "value": "what*"
+//       }
+//     }
+//   }
+// }
 ```
 
 ## Download
@@ -117,7 +117,7 @@ __Generates__
 ---
 
 ### esq.query(str, ..., str, value);
-You can pass the function as many strings as you want and you'll receive a nested object with the arguments as keys. The final value (query component) will be assigned to the final object. Returns the generated query.
+You can pass this function as many strings as you want and you'll receive a nested object with the arguments as keys. The final argument should always be the value you want to assign to the second to last argument. This function will always return the query at its current state.
 
 __Example__
 ```
@@ -135,3 +135,30 @@ __Generates__
     }
   }
 }
+```
+
+The function also allows you to pass in an argument as an array (this array should only be one element). This tells the function that you want that key to be an array and so it'll push the following arguments into the array.
+
+__Example__
+```
+esq.query('filtered', 'query', 'bool', ['must'], 'match', 'foo', 'bar');
+```
+
+__Generates__
+```javascript
+{
+  filtered: {
+    query: {
+      bool: {
+        must: [
+          {
+            match: {
+              foo: 'bar'
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
