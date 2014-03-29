@@ -1,52 +1,64 @@
 # ESQ
 
-ESQ is a helper module for elasticsearch. It aims to provide an easy way of creating elasticsearch queries.
+ESQ is a helper module for elasticsearch. It aims to provide an easy way of creating elasticsearch queries. Run `node examples` to see all of the examples from the [elasticsearch docs](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html) generated using esq!
 
 ## Quick Examples
 
 ```javascript
 var ESQ = require('esq');
-
 var esq = new ESQ();
-var query = null;
 
-query = esq.bool('filtered', 'query', 'bool', 'must', esq.match('foo', 'bar'));
-query = esq.bool('filtered', 'query', 'bool', 'must', esq.match('date', '2014-02-01'));
-query = esq.bool('filtered', 'query', 'bool', 'should', esq.range('time', '12:00', '13:00'));
-query = esq.bool('filtered', 'query', 'bool', 'minimum_should_match', 1);
+esq.query('bool', ['must'], { match: { user: 'kimchy' } });
+esq.query('bool', ['must_not'], { range: { age: { from: 10, to: 20 } } });
+esq.query('bool', ['should'], { term: { tag: 'wow' } });
+esq.query('bool', ['should'], { term: { tag: 'elasticsearch' } });
+esq.query('bool', 'minimum_should_match', 1);
+esq.query('bool', 'boost', 1.0);
 
 // query == {
-//  "filtered": {
-//    "query": {
-//      "bool": {
-//        "must": {
-//          "match": {
-//            "date": "2014-02-01"
-//          }
-//        },
-//        "should": {
-//          "range": {
-//            "time": {
-//              "gte": "12:00",
-//              "lte": "13:00"
-//            }
-//          }
-//        },
-//        "minimum_should_match": 1
-//      }
-//    }
-//  }
-//}
+//   "bool": {
+//     "must": [
+//       {
+//         "match": {
+//           "user": "kimchy"
+//         }
+//       }
+//     ],
+//     "must_not": [
+//       {
+//         "range": {
+//           "age": {
+//             "from": 10,
+//             "to": 20
+//           }
+//         }
+//       }
+//     ],
+//     "should": [
+//       {
+//         "term": {
+//           "tag": "wow"
+//         }
+//       },
+//       {
+//         "term": {
+//           "tag": "elasticsearch"
+//         }
+//       }
+//     ],
+//     "minimum_should_match": 1,
+//     "boost": 1
+//   }
+// }
 ```
 ---
 ```javascript
 var ESQ = require('esq');
-
 var esq = new ESQ();
 
-esq.query('query', esq.match('foo', 'bar'));
-esq.query('query', esq.range('x', '1', '5'));
-esq.query('query', esq.wildcard('test', 'what'));
+esq.query('query', 'match', 'foo', 'bar');
+esq.query('query', 'range', 'x', { gte: 1, lte: 5 });
+esq.query('query', 'wildcard', 'test', 'value', 'what*');
 
 var query = esq.getQuery();
 
@@ -63,7 +75,7 @@ var query = esq.getQuery();
 //    },
 //    "wildcard": {
 //      "test": {
-//        "value": "what"
+//        "value": "what*"
 //      }
 //    }
 //  }
@@ -82,15 +94,34 @@ Coming soon!
 
 ## Documentation
 
+### esq.getQuery();
+This will return the query at the current stage.
 
-## Queries
+__Example__
+```javascript
+esq.query('query', 'match', 'foo', 'bar');
+var query = esq.getQuery();
+```
+
+__Generates__
+```javascript
+{
+  query: {
+    match: {
+      foo: 'bar'
+    }
+  }
+}
+```
+
+---
 
 ### esq.query(str, ..., str, value);
-You can pass the function as many strings as you want and you'll receive a nested object with the arguments as keys. The final value (query component) will be assigned to the final object.
+You can pass the function as many strings as you want and you'll receive a nested object with the arguments as keys. The final value (query component) will be assigned to the final object. Returns the generated query.
 
 __Example__
 ```
-esq.query('filtered', 'query', esq.match('foo', 'bar'));
+esq.query('filtered', 'query', 'match', 'foo', 'bar');
 ```
 
 __Generates__
@@ -104,108 +135,3 @@ __Generates__
     }
   }
 }
-```
-
----
-### esq.bool(str, ..., str, operator, value);
-Same as above, however the second to last parameter must be one of the following operators: must, must_not, should or minimum_should_match. This will ensure that the final value is assigned correctly or pushed into an array.
-
-__Example__
-```javascript
-esq.bool('filtered', 'filter', 'bool', 'must', esq.term('foo', 'bar'));
-```
-
-__Generates__
-```javascript
-{
-  filtered: {
-    filter: {
-      bool: {
-        must: [
-          {
-            term: { foo: 'bar' }
-          }
-        ]
-      }
-    }
-  }
-}
-```
-
-## Query Components
-
-### esq.match(key, value);
-Build a match query component using the key and value provided.
-
-__Example__
-```javascript
-esq.match('foo', 'bar');
-```
-
-__Generates__
-```javascript
-{
-  match: {
-    foo: 'bar'
-  }
-}
-```
-
----
-### esq.term(key, value);
-Build a term query component using the key and value provided.
-
-__Example__
-```javascript
-esq.term('foo', 'bar');
-```
-
-__Generates__
-```javascript
-{
-  term: {
-    foo: 'bar'
-  }
-}
-```
-
----
-### esq.range(key, gte, lte);
-Build a range query using the key, grater than equal and/or less than equal provided.
-
-__Example__
-```javascript
-esq.range('foo', 1, 5);
-```
-
-__Generates__
-```javascript
-{
-  range: {
-    foo: {
-      gte: 1,
-      lte: 5
-    }
-  }
-}
-```
-
----
-### esq.wildcard(key, value);
-Build a wildcard query component using the key and value provided.
-
-__Example__
-```javascript
-esq.wildcard('foo', 'bar*');
-```
-
-__Generates__
-```javascript
-{
-  wildcard: {
-    foo: {
-      value: 'bar*'
-    }
-  }
-}
-```
