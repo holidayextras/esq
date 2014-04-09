@@ -90,7 +90,17 @@ npm install esq
 
 ## In the Browser
 
-Coming soon!
+Currently it's not been tested in any browsers, but i'm sure it'll work with most modern browsers.
+
+Usage:
+```
+<script src="esq.js"></script>
+<script>
+  var esq = new ESQ();
+  esq.query('query', { match: { foo: 'bar' } });
+  var query = esq.getQuery();
+</script>
+```
 
 ## Documentation
 
