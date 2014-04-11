@@ -1,6 +1,6 @@
 {
   "name": "esq",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Easily build elasticsearch queries",
   "keywords": [
     "elasticsearch",
@@ -12,6 +12,10 @@
     "example": "examples",
     "lib": "lib",
     "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:holidayextras/esq.git"
   },
   "scripts": {
     "test": "mocha"
