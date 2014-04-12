@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:holidayextras/esq.git"
+    "url": "http://github.com/holidayextras/esq"
   },
   "scripts": {
     "test": "mocha"
