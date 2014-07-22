@@ -33,6 +33,18 @@ describe('Testing ESQ', function() {
       var result = esq.query('foo', 'bar', ['foobar'], 123);
       assert.deepEqual(result, { foo: { bar: { foobar: [ 123 ] } } });
     });
+
+    it('with overwritted string', function() {
+      esq.query('foo', 'bar');
+      var result = esq.query('foo', 'bar2');
+      assert.deepEqual(result, { foo: 'bar2' });
+    });
+
+    it('with overwritted number', function() {
+      esq.query('foo', 1);
+      var result = esq.query('foo', 42);
+      assert.deepEqual(result, { foo: 42 });
+    });
   });
 
   describe('_createNestedObject', function() {
