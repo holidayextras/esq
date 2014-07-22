@@ -60,6 +60,12 @@ describe('Testing ESQ', function() {
       assert.deepEqual(base, { a: { b: 'c', d: 'e' } });
     });
 
+    it('with array type name parameters', function() {
+      esq._createNestedObject(base, [['a'], 'b'], 'c');
+      esq._createNestedObject(base, [['a'], 'd'], 'e');
+      assert.deepEqual(base, { a: [ { b: 'c' }, { d: 'e' } ] });
+    });
+
     it('with array type value parameters', function() {
       esq._createNestedObject(base, ['a'], [{ b: 'c' }]);
       esq._createNestedObject(base, ['a'], [{ d: 'e' }]);
