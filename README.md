@@ -1,5 +1,7 @@
 # ESQ
 
+[![Build Status](https://travis-ci.org/holidayextras/esq.png?branch=master)](https://travis-ci.org/holidayextras/esq)
+
 ESQ is a helper module for elasticsearch. It aims to provide an easy way of creating elasticsearch queries. Run `node examples` to see all of the examples from the [elasticsearch docs](http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-queries.html) generated using esq!
 
 ## Quick Examples
