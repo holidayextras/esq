@@ -4,8 +4,12 @@
 
 I wanted an easy way to build elasticsearch queries without having to writing lots and lots of code just for the structure of the query. For that reason I created ESQ, a very simple but powerful tool that will do all of the object creation for you.
 
+---
+
 ## Download
 `npm install esq` or `bower intall esq`
+
+---
 
 ## Quick Example
 
@@ -36,6 +40,8 @@ __Generates__
 }
 ```
 
+---
+
 ## In the browser
 
 ```html
@@ -46,6 +52,8 @@ __Generates__
   var query = esq.getQuery();
 </script>
 ```
+
+---
 
 ## Documentation
 
@@ -123,6 +131,8 @@ __Generates__
   }
 }
 ```
+
+---
 
 ## Tests
 
