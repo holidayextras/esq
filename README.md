@@ -5,10 +5,7 @@
 I wanted an easy way to build elasticsearch queries without having to writing lots and lots of code just for the structure of the query. For that reason I created ESQ, a very simple but powerful tool that will do all of the object creation for you.
 
 ## Download
-```
-npm install esq
-bower intall esq
-```
+`npm install esq` or `bower intall esq`
 
 ## Quick Example
 
@@ -98,6 +95,8 @@ __Generates__
   }
 }
 ```
+
+#### Array Arguments
 
 The function also allows you to pass in an argument as an array (e.g. `['must']`). This tells the function that you want that key to be an array and so it'll push the following arguments into the array.
 
