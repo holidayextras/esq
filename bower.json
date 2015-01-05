@@ -1,31 +1,30 @@
 {
   "name": "esq",
-  "main": "index.js",
-  "version": "0.0.11",
-  "homepage": "https://github.com/holidayextras/esq",
+  "version": "0.0.12",
+  "description": "Easily build elasticsearch queries",
   "authors": [
     "Rahul Patel <rahul.patel@holidayextras.com>"
   ],
-  "description": "Easily build elasticsearch queries",
-  "moduleType": [
-    "amd",
-    "globals",
-    "node"
-  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/holidayextras/esq"
+  },
+  "main": "esq.js",
   "keywords": [
     "elasticsearch",
     "esq",
     "querying",
     "queries",
+    "query"
     "elastic",
-    "search"
+    "search",
+    "dsl"
   ],
-  "license": "GPL",
   "ignore": [
-    "**/.*",
+    "examples",
     "node_modules",
     "bower_components",
-    "test",
-    "tests"
+    "test"
   ]
 }

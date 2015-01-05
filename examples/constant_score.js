@@ -1,6 +1,6 @@
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-constant-score-query.html
 
-var ESQ = require('../lib/esq');
+var ESQ = require('../esq');
 var esq = new ESQ();
 
 esq.query('constant_score', 'filter', 'term', { user: 'kimchy' });

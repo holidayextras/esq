@@ -1,25 +1,34 @@
 {
   "name": "esq",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "Easily build elasticsearch queries",
-  "keywords": [
-    "elasticsearch",
-    "query",
-    "querying"
-  ],
-  "main": "index.js",
-  "directories": {
-    "example": "examples",
-    "lib": "lib",
-    "test": "test"
-  },
+  "author": "Rahul Patel <rahul.patel@holidayextras.com>",
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "http://github.com/holidayextras/esq"
   },
-  "scripts": {
-    "test": "mocha"
+  "directories": {
+    "example": "examples",
+    "test": "test"
   },
-  "author": "Rahul Patel <rahul.patel@holidayextras.com>",
-  "license": "GPL"
+  "main": "esq.js",
+  "scripts": {
+    "test": "mocha",
+    "prepublish": "./node_modules/.bin/uglifyjs ./esq.js --compress --output ./esq.min.js"
+  },
+  "keywords": [
+    "elasticsearch",
+    "esq",
+    "querying",
+    "queries",
+    "query",
+    "elastic",
+    "search",
+    "dsl"
+  ],
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "uglify-js": "^2.4.16"
+  }
 }

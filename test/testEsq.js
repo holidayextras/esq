@@ -1,5 +1,5 @@
 var assert = require('assert');
-var ESQ = require('../lib/esq');
+var ESQ = require('../esq');
 
 describe('Testing ESQ', function() {
   var esq = null;

@@ -1,6 +1,6 @@
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-simple-query-string-query.html
 
-var ESQ = require('../lib/esq');
+var ESQ = require('../esq');
 var esq = new ESQ();
 
 esq.query('simple_query_string', 'query', '"fried eggs" +(eggplant | potato) -frittata');

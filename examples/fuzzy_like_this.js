@@ -1,6 +1,6 @@
 //http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-flt-query.html
 
-var ESQ = require('../lib/esq');
+var ESQ = require('../esq');
 var esq = new ESQ();
 
 esq.query('fuzzy_like_this', ['fields'], ['name.first', 'name.last']);

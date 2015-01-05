@@ -1,6 +1,6 @@
 http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl-boosting-query.html
 
-var ESQ = require('../lib/esq');
+var ESQ = require('../esq');
 var esq = new ESQ();
 
 esq.query('boosting', 'positive', 'term', { field1: 'value1' });

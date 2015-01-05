@@ -1,1 +1,4 @@
 .DS_Store
+esq.min.js
+node_modules/
+esq.sublime-workspace
