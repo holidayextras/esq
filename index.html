@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Esq : Simple query builder for elasticsearch">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Esq</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/holidayextras/esq">View on GitHub</a>
+
+          <h1 id="project_title">Esq</h1>
+          <h2 id="project_tagline">Simple query builder for elasticsearch</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/holidayextras/esq/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/holidayextras/esq/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a id="esq-elasticsearch-query" class="anchor" href="#esq-elasticsearch-query" aria-hidden="true"><span class="octicon octicon-link"></span></a>ESQ (Elasticsearch Query)</h1>
+
+<p><a href="https://travis-ci.org/holidayextras/esq"><img src="https://travis-ci.org/holidayextras/esq.png?branch=master" alt="Build Status"></a></p>
+
+<p>I wanted an easy way to build elasticsearch queries without having to writing lots and lots of code just for the structure of the query. For that reason I created ESQ, a very simple but powerful tool that will do all of the object creation for you.</p>
+
+<hr>
+
+<h2>
+<a id="download" class="anchor" href="#download" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p><code>npm install esq</code> or <code>bower intall esq</code></p>
+
+<hr>
+
+<h2>
+<a id="quick-example" class="anchor" href="#quick-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Quick Example</h2>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s">var</span> ESQ <span class="pl-k">=</span> <span class="pl-s3">require</span>(<span class="pl-s1"><span class="pl-pds">'</span>esq<span class="pl-pds">'</span></span>);
+<span class="pl-s">var</span> esq <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ESQ</span>();
+
+esq.query(<span class="pl-s1"><span class="pl-pds">'</span>bool<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>must<span class="pl-pds">'</span></span>], { match<span class="pl-k">:</span> { user<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>kimchy<span class="pl-pds">'</span></span> } });
+esq.query(<span class="pl-s1"><span class="pl-pds">'</span>bool<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>minimum_should_match<span class="pl-pds">'</span></span>, <span class="pl-c1">1</span>);
+
+<span class="pl-s">var</span> query <span class="pl-k">=</span> esq.getQuery();</pre></div>
+
+<p><strong>Generates</strong></p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>bool<span class="pl-pds">"</span></span>: {
+    <span class="pl-s1"><span class="pl-pds">"</span>must<span class="pl-pds">"</span></span>: [
+      {
+        <span class="pl-s1"><span class="pl-pds">"</span>match<span class="pl-pds">"</span></span>: {
+          <span class="pl-s1"><span class="pl-pds">"</span>user<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>kimchy<span class="pl-pds">"</span></span>
+        }
+      }
+    ],
+    <span class="pl-s1"><span class="pl-pds">"</span>minimum_should_match<span class="pl-pds">"</span></span>: <span class="pl-c1">1</span>
+  }
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="in-the-browser" class="anchor" href="#in-the-browser" aria-hidden="true"><span class="octicon octicon-link"></span></a>In the browser</h2>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s1"><span class="pl-pds">"</span>esq.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+<span class="pl-s2">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s2">  <span class="pl-s">var</span> esq <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">ESQ</span>();</span>
+<span class="pl-s2">  esq.query(<span class="pl-s1"><span class="pl-pds">'</span>bool<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>must<span class="pl-pds">'</span></span>], { match<span class="pl-k">:</span> { user<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>kimchy<span class="pl-pds">'</span></span> } });</span>
+<span class="pl-s2">  <span class="pl-s">var</span> query <span class="pl-k">=</span> esq.getQuery();</span>
+<span class="pl-s2">&lt;/<span class="pl-ent">script</span>&gt;</span></pre></div>
+
+<hr>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<h3>
+<a id="esqgetquery" class="anchor" href="#esqgetquery" aria-hidden="true"><span class="octicon octicon-link"></span></a>esq.getQuery();</h3>
+
+<p>This will return the query at the current stage.</p>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight highlight-javascript"><pre>esq.query(<span class="pl-s1"><span class="pl-pds">'</span>bool<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>must<span class="pl-pds">'</span></span>], { match<span class="pl-k">:</span> { foo<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span> } });
+<span class="pl-s">var</span> query <span class="pl-k">=</span> esq.getQuery();</pre></div>
+
+<p><strong>Generates</strong></p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>bool<span class="pl-pds">"</span></span>: {
+    <span class="pl-s1"><span class="pl-pds">"</span>must<span class="pl-pds">"</span></span>: [
+      {
+        <span class="pl-s1"><span class="pl-pds">"</span>match<span class="pl-pds">"</span></span>: {
+          <span class="pl-s1"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>
+        }
+      }
+    ]
+  }
+}</pre></div>
+
+<hr>
+
+<h3>
+<a id="esqquerystr--str-value" class="anchor" href="#esqquerystr--str-value" aria-hidden="true"><span class="octicon octicon-link"></span></a>esq.query(str, ..., str, value);</h3>
+
+<p>You can pass this function as many strings as you want and you'll receive a nested object with the arguments as keys. The final argument should always be the object you want to assign to the second to last argument. This function will always return the query at its current state.</p>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight highlight-javascript"><pre>esq.query(<span class="pl-s1"><span class="pl-pds">'</span>filtered<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>query<span class="pl-pds">'</span></span>, { match<span class="pl-k">:</span> { foo<span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span> } });</pre></div>
+
+<p><strong>Generates</strong></p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>filtered<span class="pl-pds">"</span></span>: {
+    <span class="pl-s1"><span class="pl-pds">"</span>query<span class="pl-pds">"</span></span>: {
+      <span class="pl-s1"><span class="pl-pds">"</span>match<span class="pl-pds">"</span></span>: {
+        <span class="pl-s1"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>
+      }
+    }
+  }
+}</pre></div>
+
+<h4>
+<a id="array-arguments" class="anchor" href="#array-arguments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Array Arguments</h4>
+
+<p>The function also allows you to pass in an argument as an array (e.g. <code>['must']</code>). This tells the function that you want that key to be an array and so it'll push the following arguments into the array.</p>
+
+<p><strong>Example</strong></p>
+
+<div class="highlight highlight-javascript"><pre>esq.query(<span class="pl-s1"><span class="pl-pds">'</span>filtered<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>query<span class="pl-pds">'</span></span>, <span class="pl-s1"><span class="pl-pds">'</span>bool<span class="pl-pds">'</span></span>, [<span class="pl-s1"><span class="pl-pds">'</span>must<span class="pl-pds">'</span></span>], { match<span class="pl-k">:</span> { <span class="pl-s1"><span class="pl-pds">'</span>foo<span class="pl-pds">'</span></span><span class="pl-k">:</span> <span class="pl-s1"><span class="pl-pds">'</span>bar<span class="pl-pds">'</span></span> } });</pre></div>
+
+<p><strong>Generates</strong></p>
+
+<div class="highlight highlight-json"><pre>{
+  <span class="pl-s1"><span class="pl-pds">"</span>filtered<span class="pl-pds">"</span></span>: {
+    <span class="pl-s1"><span class="pl-pds">"</span>query<span class="pl-pds">"</span></span>: {
+      <span class="pl-s1"><span class="pl-pds">"</span>bool<span class="pl-pds">"</span></span>: {
+        <span class="pl-s1"><span class="pl-pds">"</span>must<span class="pl-pds">"</span></span>: [
+          {
+            <span class="pl-s1"><span class="pl-pds">"</span>match<span class="pl-pds">"</span></span>: {
+              <span class="pl-s1"><span class="pl-pds">"</span>foo<span class="pl-pds">"</span></span>: <span class="pl-s1"><span class="pl-pds">"</span>bar<span class="pl-pds">"</span></span>
+            }
+          }
+        ]
+      }
+    }
+  }
+}</pre></div>
+
+<hr>
+
+<h2>
+<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+
+<p>This module is fully tested, run the tests using <code>mocha</code>.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Esq maintained by <a href="https://github.com/holidayextras">holidayextras</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-29469723-2");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
