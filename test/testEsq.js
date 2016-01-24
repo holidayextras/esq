@@ -45,6 +45,17 @@ describe('Testing ESQ', function() {
       var result = esq.query('foo', 42);
       assert.deepEqual(result, { foo: 42 });
     });
+
+    it('with zero value', function() {
+      var result = esq.query('foo', 0);
+      assert.deepEqual(result, { foo: 0 });
+    });
+
+    it('with false value', function() {
+      var result = esq.query('foo', false);
+      assert.deepEqual(result, { foo: false });
+    });
+
   });
 
   describe('_createNestedObject', function() {
@@ -64,6 +75,16 @@ describe('Testing ESQ', function() {
     it('with base, name and value parameters', function() {
       esq._createNestedObject(base, ['a'], { b: 'c' });
       assert.deepEqual(base, { a: { b: 'c' } });
+    });
+
+    it('with zero value parameter', function() {
+      esq._createNestedObject(base, ['a', 'b'], 0);
+      assert.deepEqual(base, { a: { b: 0 } });
+    });
+
+    it('with false value parameter', function() {
+      esq._createNestedObject(base, ['a', 'b'], false);
+      assert.deepEqual(base, { a: { b: false } });
     });
 
     it('with object type value parameters', function() {

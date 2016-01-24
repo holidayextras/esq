@@ -39,7 +39,8 @@
       } else if (value instanceof Object) {
         base[lastName] ? this._extend(base[lastName], value) : base[lastName] = value;
       }
-      base = base[lastName] = ((typeof base[lastName] === "object") ? base[lastName] : undefined) || value || Object.create(null);
+      base = base[lastName] = ((typeof base[lastName] === "object") ? base[lastName] : undefined) ||
+            ((value === null || typeof value === "undefined") ? Object.create(null) : value);
     }
 
     if ((names.length == 0) && !lastName && value) {
