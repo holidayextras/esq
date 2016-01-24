@@ -1,6 +1,6 @@
 {
   "name": "esq",
-  "version": "0.0.12",
+  "version": "0.0.13",
   "description": "Easily build elasticsearch queries",
   "author": "Rahul Patel <rahul.patel@holidayextras.com>",
   "license": "MIT",
